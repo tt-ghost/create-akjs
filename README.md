@@ -7,7 +7,8 @@
 1 创建项目
 
 ```sh
-pnpm create akjs my-akjs
+pnpm create akjs
+# 根据步骤填写项目名、安装依赖、启动
 ```
 
 2 安装依赖

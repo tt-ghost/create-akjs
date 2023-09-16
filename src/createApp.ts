@@ -4,27 +4,14 @@ import path from "path";
 import inquirer from "inquirer";
 import { isDirectoryEmpty, isDirectoryWriteable, copyDir, replaceContent } from "./helper";
 
-export default async function createApp({ appPath }: { appPath: string; template?: string }): Promise<void> {
-  const root: string = path.resolve(appPath);
-  const appName: string = path.basename(root);
-
-  await fsExtra.ensureDir(root);
-  if (!isDirectoryEmpty(root, appName)) {
-    process.exit(1);
-  }
-
-  if (!(await isDirectoryWriteable(root))) {
-    console.error("你的应用路径不可写，请检查权限后重试！");
-    process.exit(1);
-  }
-
-  process.chdir(root);
-
-  console.log();
-  console.log(`正在创建在 ${chalk.green(root)} 目录创建 akjs 应用`);
-  console.log();
-
+export default async function createApp(): Promise<void> {
   const promptList = [
+    {
+      type: "input",
+      message: "请输入项目名称: ",
+      name: "appName",
+      default: "my-akjs",
+    },
     {
       type: "list",
       message: "请选择模板: ",
@@ -42,7 +29,27 @@ export default async function createApp({ appPath }: { appPath: string; template
       ],
     },
   ];
+
   const promptRes = await inquirer.prompt(promptList);
+  const root: string = path.resolve(promptRes.appName);
+  const appName: string = path.basename(root);
+
+  await fsExtra.ensureDir(root);
+
+  if (!isDirectoryEmpty(root, appName)) {
+    process.exit(1);
+  }
+
+  if (!(await isDirectoryWriteable(root))) {
+    console.error("你的应用路径不可写，请检查权限后重试！");
+    process.exit(1);
+  }
+
+  process.chdir(root);
+
+  console.log();
+  console.log(`正在创建 akjs 应用： ${chalk.green(root)}`);
+  console.log();
 
   const tplPath = path.resolve(__dirname, `../templates/${promptRes.template}`);
   copyDir(tplPath, root);
@@ -50,9 +57,11 @@ export default async function createApp({ appPath }: { appPath: string; template
 
   console.log("***********************************");
   console.log("");
-  console.log(`cd ${appName}`);
-  console.log("");
-  console.log("pnpm i");
+  console.log(chalk.green('cd ' + appName));
+  console.log(chalk.gray("# 安装依赖"));
+  console.log(chalk.green('pnpm i'));
+  console.log(chalk.gray("# 启动"));
+  console.log(chalk.green('pnpm dev'));
   console.log("");
   console.log("***********************************");
   console.log("");

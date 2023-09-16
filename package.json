@@ -1,7 +1,7 @@
 {
   "name": "create-akjs",
   "description": "Create akjs app",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "./dist/index.js",
   "license": "MIT",
   "bin": "./dist/index.js",
@@ -32,7 +32,6 @@
     "commander": "^9.0.0",
     "fs-extra": "^10.0.1",
     "inquirer": "^9.2.11",
-    "prompts": "^2.4.2",
     "update-check": "^1.5.4"
   },
   "devDependencies": {
@@ -41,7 +40,6 @@
     "@types/fs-extra": "^9.0.13",
     "@types/inquirer": "^9.0.3",
     "@types/node": "^17.0.21",
-    "@types/prompts": "2.0.14",
     "@vercel/ncc": "^0.33.3",
     "typescript": "~4.6.2"
   },
