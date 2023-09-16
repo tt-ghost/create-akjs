@@ -1,0 +1,22 @@
+{
+  "name": "akjs-example-npm-name",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "cross-env NODE_ENV=dev nodemon ./src/app.js",
+    "server": "pm2 start ./src/app.js",
+    "server-prod": "cross-env NODE_ENV=prod npm run server"
+  },
+  "description": "akjs app",
+  "license": "MIT",
+  "dependencies": {
+    "akjs": "^0.2.0"
+  },
+  "devDependencies": {
+    "@chengjs/eslint-plugin": "^0.4.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.41.0",
+    "nodemon": "^2.0.22"
+  }
+}
