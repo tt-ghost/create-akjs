@@ -7,7 +7,7 @@
 1 创建项目
 
 ```sh
-yarn create akjs my-akjs
+pnpm create akjs my-akjs
 ```
 
 2 安装依赖

@@ -1,7 +1,7 @@
 {
   "name": "create-akjs",
   "description": "Create akjs app",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "main": "./dist/index.js",
   "license": "MIT",
   "bin": "./dist/index.js",
@@ -10,6 +10,7 @@
   },
   "files": [
     "/dist",
+    "/templates",
     "README.md"
   ],
   "homepage": "https://github.com/tt-ghost/create-akjs#readme",

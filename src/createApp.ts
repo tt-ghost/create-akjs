@@ -44,9 +44,12 @@ export default async function createApp({ appPath }: { appPath: string; template
   ];
   const promptRes = await inquirer.prompt(promptList);
 
-  const tplPath = path.resolve(__dirname, `../templates/${promptRes.template}`);
+  const tplPath = path.resolve(`../templates/${promptRes.template}`);
   copyDir(tplPath, root);
   replaceContent(path.resolve(root, "package.json"), (data: string) => data.replace("akjs-example-npm-name", appName));
 
+  console.log("");
+  console.log(`cd ${appName}`);
+  console.log("");
   console.log("请使用 npm/yarn/pnpm 等进行安装");
 }
